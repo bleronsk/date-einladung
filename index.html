@@ -149,90 +149,33 @@
 
   <div class="card hidden" id="page2">
     <div class="heart">💌</div>
-    <h2>Offizielle Einladung</h2>
-    <p>Dann darfst du jetzt aussuchen, wann und worauf du Lust hast.</p>
+    <h2>Date ❤️</h2>
+    <p>Dann verrate mir, wann du Zeit hast und worauf du Lust hast.</p>
 
-    <div class="date-box">
-      <label><strong>📅 Such dir ein Datum aus:</strong></label>
-      <input type="date" id="chosenDate">
+    <form action="https://formspree.io/f/xzdqyozb" method="POST">
+      <div class="date-box">
 
-      <label><strong>🕒 Such dir eine Uhrzeit aus:</strong></label>
-      <input type="time" id="chosenTime">
+        <label>📅 Datum</label>
+        <input type="date" name="Datum" required>
 
-      <label><strong>🍽️ Worauf hast du Lust zu essen?</strong></label>
-      <textarea id="foodWish" placeholder="Pizza, Sushi, Burger, Italienisch..."></textarea>
-    </div>
+        <label>🕒 Uhrzeit</label>
+        <input type="time" name="Uhrzeit" required>
 
-    <button onclick="showSummary()">Antwort abschicken ❤️</button>
+        <label>🍽️ Worauf hast du Lust?</label>
+        <textarea name="Essenswunsch" placeholder="Sushi, Italienisch, Burger..." required></textarea>
+
+        <input type="hidden" name="_subject" value="Neue Date-Antwort ❤️">
+
+      </div>
+
+      <button type="submit">Antwort senden ❤️</button>
+    </form>
   </div>
-
-  <div class="card hidden" id="page2">
-  <div class="heart">💌</div>
-
-  <h2>Date ❤️</h2>
-
-
-  <form action="https://formspree.io/f/xzdqyozb" method="POST">
-
-    <div class="date-box">
-
-      <label>📅 Datum</label>
-      <input
-        type="date"
-        name="Datum"
-        required
-      >
-
-      <label>🕒 Uhrzeit</label>
-      <input
-        type="time"
-        name="Uhrzeit"
-        required
-      >
-
-      <label>🍽️ Worauf hast du Lust?</label>
-      <textarea
-        name="Essenswunsch"
-        placeholder="Sushi, Italienisch, Burger..."
-        required
-      ></textarea>
-
-      <input
-        type="hidden"
-        name="_subject"
-        value="Neue Date-Antwort ❤️"
-      >
-
-    </div>
-
-    <button type="submit">
-      Antwort senden ❤️
-    </button>
-
-  </form>
-</div>
 
   <script>
     function showPage(number) {
       document.querySelectorAll(".card").forEach(card => card.classList.add("hidden"));
       document.getElementById("page" + number).classList.remove("hidden");
-    }
-
-    function showSummary() {
-      const date = document.getElementById("chosenDate").value;
-      const time = document.getElementById("chosenTime").value;
-      const food = document.getElementById("foodWish").value;
-
-      if (!date || !time || !food) {
-        alert("Bitte füll alles aus ❤️");
-        return;
-      }
-
-      document.getElementById("resultDate").innerText = date;
-      document.getElementById("resultTime").innerText = time;
-      document.getElementById("resultFood").innerText = food;
-
-      showPage(3);
     }
 
     function createHeart() {
