@@ -173,27 +173,50 @@
   </div>
 
   <script>
-    function showPage(number) {
-      document.querySelectorAll(".card").forEach(card => card.classList.add("hidden"));
-      document.getElementById("page" + number).classList.remove("hidden");
-    }
+  function showPage(number) {
+    document.querySelectorAll(".card").forEach(card => card.classList.add("hidden"));
+    document.getElementById("page" + number).classList.remove("hidden");
+  }
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("floating-heart");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
-      heart.style.fontSize = (Math.random() * 18 + 16) + "px";
-      document.body.appendChild(heart);
+  const form = document.querySelector("form");
 
-      setTimeout(() => {
-        heart.remove();
-      }, 8000);
-    }
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-    setInterval(createHeart, 500);
-  </script>
+    const formData = new FormData(form);
 
+    await fetch(form.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Accept": "application/json"
+      }
+    });
+
+    document.getElementById("page2").innerHTML = `
+      <div class="heart">✨</div>
+      <h2>Perfekt ❤️</h2>
+      <p>Deine Antwort wurde abgeschickt.</p>
+      <p>Ich freue mich jetzt schon auf unser Date.</p>
+      <p>Den Rest übernehme ich. ❤️</p>
+    `;
+  });
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("floating-heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 5) + "s";
+    heart.style.fontSize = (Math.random() * 18 + 16) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 8000);
+  }
+
+  setInterval(createHeart, 500);
+</script>
 </body>
 </html>
