@@ -166,19 +166,51 @@
     <button onclick="showSummary()">Antwort abschicken ❤️</button>
   </div>
 
-  <div class="card hidden" id="page3">
-    <div class="heart">✨</div>
-    <h2>Perfekt!</h2>
-    <p>Ich freue mich jetzt schon auf unser Date.</p>
+  <div class="card hidden" id="page2">
+  <div class="heart">💌</div>
+
+  <h2>Date ❤️</h2>
+
+
+  <form action="https://formspree.io/f/xzdqyozb" method="POST">
 
     <div class="date-box">
-      <p><strong>📅 Datum:</strong> <span id="resultDate"></span></p>
-      <p><strong>🕒 Uhrzeit:</strong> <span id="resultTime"></span></p>
-      <p><strong>🍽️ Essen:</strong> <span id="resultFood"></span></p>
+
+      <label>📅 Datum</label>
+      <input
+        type="date"
+        name="Datum"
+        required
+      >
+
+      <label>🕒 Uhrzeit</label>
+      <input
+        type="time"
+        name="Uhrzeit"
+        required
+      >
+
+      <label>🍽️ Worauf hast du Lust?</label>
+      <textarea
+        name="Essenswunsch"
+        placeholder="Sushi, Italienisch, Burger..."
+        required
+      ></textarea>
+
+      <input
+        type="hidden"
+        name="_subject"
+        value="Neue Date-Antwort ❤️"
+      >
+
     </div>
 
-    <p>Den Rest übernehme ich. ❤️</p>
-  </div>
+    <button type="submit">
+      Antwort senden ❤️
+    </button>
+
+  </form>
+</div>
 
   <script>
     function showPage(number) {
