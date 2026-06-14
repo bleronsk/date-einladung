@@ -67,7 +67,19 @@
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.18); }
     }
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 16px;
+  border-radius: 14px;
+  border: 1px solid #ffc2d1;
+  font-size: 1rem;
+}
 
+textarea {
+  min-height: 90px;
+  resize: none;
+}
     button {
       border: none;
       background: #d6336c;
@@ -157,27 +169,30 @@
 
   <div class="card" id="page1">
     <div class="heart">❤️</div>
-    <h1>Hallo mein Schatz</h1>
-    <p>Ich habe eine kleine Überraschung für dich vorbereitet.</p>
-    <p>Bist du bereit?</p>
+    <h1>Hallo mein Schnucki</h1>
+    <p>Ich habe eine kleine Überraschung.</p>
+    <p>Bist du ready?</p>
     <button onclick="showPage(2)">Ja, natürlich ❤️</button>
   </div>
 
-  <div class="card hidden" id="page2">
-    <div class="heart">💌</div>
-    <h2>Offizielle Einladung</h2>
-    <p>Hiermit lade ich dich zu einem Date mit mir ein.</p>
+ <div class="card hidden" id="page2">
+  <div class="heart">💌</div>
+  <h2>Offizielle Einladung</h2>
+  <p>Hiermit lade ich dich zu einem Date mit mir ein.</p>
 
-    <div class="date-box">
-      <p>📅 <strong>Wann:</strong> Samstag, 20. Juni</p>
-      <p>🕒 <strong>Uhrzeit:</strong> 18:00 Uhr</p>
-      <p>📍 <strong>Treffpunkt:</strong> Wird noch verraten 😉</p>
-      <p>👗 <strong>Dresscode:</strong> Zieh an, worin du dich wohlfühlst.</p>
-    </div>
+  <div class="date-box">
+    <p>📅 <strong>Such dir ein Datum aus:</strong></p>
+    <input type="date" id="chosenDate">
 
-    <button onclick="showPage(3)">Ich komme ❤️</button>
-    <button class="secondary" onclick="showPage(3)">Natürlich komme ich ❤️</button>
+    <p>🕒 <strong>Such dir eine Uhrzeit aus:</strong></p>
+    <input type="time" id="chosenTime">
+
+    <p>🍽️ <strong>Worauf hast du Lust zu essen?</strong></p>
+    <textarea id="foodWish" placeholder="Schreib hier rein, worauf du Lust hast..."></textarea>
   </div>
+
+  <button onclick="saveDateInfo()">Ich komme ❤️</button>
+</div>
 
   <div class="card hidden" id="page3">
     <div class="heart">⏳</div>
@@ -234,7 +249,24 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+<script>
+  function saveDateInfo() {
+    const date = document.getElementById("chosenDate").value;
+    const time = document.getElementById("chosenTime").value;
+    const food = document.getElementById("foodWish").value;
 
+    if (!date || !time || !food) {
+      alert("Bitte füll alles aus ❤️");
+      return;
+    }
+
+    localStorage.setItem("date", date);
+    localStorage.setItem("time", time);
+    localStorage.setItem("food", food);
+
+    showPage(3);
+  }
+</script>
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("floating-heart");
